@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/js/searchOnTable.js"></script>
+    <style>
+        .row-padding {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        html,body{
+            background-image: url("/images/users.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div th:insert="navbar :: navDashboard">
+</div>
+
+
+<div class="container">
+    <div th:if="${message}" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <a th:text="${message.body}"></a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div>
+        <form method="post" class="form-horizontal" th:action="@{'/note/' + ${noteId} + '/users'}" th:object="${userNote}">
+            <div class="form-group row row-padding">
+                <div class="col-3">
+                    <input type="search" id="search" th:field="*{username}"  class="form-control description" required=""
+                           placeholder="username" minlength="2" maxlength="30">
+                </div>
+                <div class="col-4">
+                    <select ng-model='discussionsSelect' th:field="*{permission}" class='form-control'>
+                        <option value='READ' selected>READ ONLY</option>
+                        <option value='MODIFY'>MODIFY</option>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <span class="input-group-btn">
+                        <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row" style="top: 20px;">
+        <table id="table" class="table table-hover" cellspacing="0" width="90%">
+            <thead>
+            <tr>
+                <th class="th-sm" >UserName
+                </th>
+                <th class="th-sm">Permission
+                </th>
+                <th class="th-sm">
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="noteUser : ${noteUsers}">
+                <td scope="row" th:text="${noteUser.username}"></td>
+                <td scope="row" th:text="${noteUser.permission}"></td>
+                <td><a scope="row" th:text="DELETE" th:href="@{'/note/' + ${noteUser.noteId} + '/user/' + ${noteUser.username}}"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.1.0.min.js"></script>
+<script src="extensions/auto-refresh/bootstrap-table-auto-refresh.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/js/searchOnTable.js"></script>
+
+    <style>
+        .row-padding {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        .col{
+            background-color: #e3e3e3;
+        }
+
+        html,body{
+            background-image: url("/images/dashboard.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+    </style>
+    <meta http-equiv="refresh" content="60"/>
+</head>
+<body>
+
+<div th:insert="navbar :: #navDashboard">
+</div>
+
+<div class="container">
+
+<div class="row row-padding">
+    <div class="col-lg-4 col-lg-offset-4">
+        <input type="search" id="search" value="" class="form-control" placeholder="Search for a note">
+    </div>
+</div>
+
+<div th:if="${message}" class="row alert alert-warning alert-dismissible fade show" role="alert">
+    <a th:text="${message.body}"></a>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table id="table" class="table table-hover" cellspacing="0" width="100%" >
+                <thead class = "col">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="note : ${notes}">
+                    <td scope="row" th:text="${note.title}"></td>
+                    <td scope="row" th:text="${note.description}"></td>
+                    <td><a scope="row" th:text="USERS" th:href="@{'/note/' + ${note.id} + '/users'}"></a></td>
+                    <td><a scope="row" th:text="VIEW" th:href="@{'/note/' + ${note.id} + '/view'}"></a></td>
+                    <td><a scope="row" th:text="EDIT" th:href="@{'/note/' + ${note.id} + '/edit'}"></a></td>
+                    <td><a scope="row" th:text="DELETE" th:href="@{'/note/' + ${note.id} + '/delete'}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="extensions/auto-refresh/bootstrap-table-auto-refresh.js"></script>
+<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.1.0.min.js"></script>
+</body>
+</html>

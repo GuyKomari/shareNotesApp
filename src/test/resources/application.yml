@@ -1,0 +1,34 @@
+spring:
+  data:
+    mongodb:
+      database: sharenotesDB
+      host: localhost
+      port: 27017
+
+  kafka:
+    bootstrap-servers:
+      - 52.174.19.19:9092
+    consumer:
+      group-id: App
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sharenoteshelp@gmail.com
+    password: oovnkwmdiwmjioeg
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: C:/Users/guyk/Desktop/private/sharenotes/app/src/main/resources/keystore/sharenotes.p12
+    key-store-password: kafka123
+    key-alias: sharenotes
+  port: 8096

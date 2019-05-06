@@ -1,0 +1,35 @@
+spring:
+  data:
+    mongodb:
+      database: sharenotesDB
+      host: localhost
+      port: 27017
+
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: shareNotesApp
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password: 
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8080
+  ssl:
+    key-store-type:
+    key-store: 
+    key-store-password: 
+    key-alias: 
+  
