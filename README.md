@@ -14,6 +14,8 @@ Spring + Kafka + MongoDB
 
 4.  Clone or download and unzip this repository.
 
+5.  Edit the configuration file - https://github.com/GuyKomari/shareNotesApp/blob/master/src/main/resources/application.yml
+
 5.  In the command line run - <br/>
     $ ./gradlew bootRun <br/>
     OR <br/>
