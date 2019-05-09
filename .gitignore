@@ -7,10 +7,13 @@ gradle
 gradlew
 gradlew.bat
 
-### Sprint application ###
+### Spring application ###
 ./application/build
 ./application/out
-./application/gradle
+./application/*gradle
+./application/gradlew
+./application/gradlew.bat
+
 
 ### STS ###
 .apt_generated
