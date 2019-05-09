@@ -12,20 +12,4 @@ public class AppApplication {
 		SpringApplication.run(AppApplication.class, args);
 	}
 
-	/**
-	 * init the role repository
-	 * @param roleRepository
-	 * @return
-	 */
-	@Bean
-	CommandLineRunner init(RoleRepository roleRepository) {
-		return args -> {
-			Role userRole = roleRepository.findByRole("USER");
-			if (userRole == null) {
-				Role newUserRole = new Role();
-				newUserRole.setRole("USER");
-				roleRepository.save(newUserRole);
-			}
-		};
-	}
 }
