@@ -2,6 +2,15 @@ HELP.md
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+gradle
+
+gradlew
+gradlew.bat
+
+### Sprint application ###
+./application/build
+./application/out
+./application/gradle
 
 ### STS ###
 .apt_generated
